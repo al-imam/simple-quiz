@@ -1,3 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Days+One&family=Philosopher&display=swap");
+
+:root {
+  --red-dark: #f43f5e;
+  --red-light: #fb7185;
+  --green-light: #6ee7b7;
+  --green-dark: #34d399;
+  --p-dark: #6366f1;
+  --p-light: #a5b4fc;
+  --dark: var(--p-dark);
+  --light: var(--p-light);
+}
+
 .quiz {
   background-color: var(--white);
   border-radius: 0.5rem;
@@ -16,6 +29,7 @@
 .question {
   font-size: 1rem;
   color: var(--gray-7);
+  font-family: "Philosopher", var(--ff-sans-serif);
   display: grid;
   grid-template-columns: auto 1fr;
   grid-column-gap: 0.25rem;
@@ -40,10 +54,19 @@
   height: 3rem;
   color: var(--gray-9);
   font-weight: bold;
+  font-family: "Philosopher", var(--ff-sans-serif);
   border: none;
-  border-radius: 0.05rem;
+  border-radius: 0.2rem;
   background-image: linear-gradient(to top right, var(--dark), var(--light));
+
   transition: filter 200ms ease-in, transform 200ms ease-in;
+}
+
+.note {
+  margin-top: 16px;
+  font-size: 1rem;
+  font-family: "Days One", var(--ff-sans-serif);
+  color: var(--dark);
 }
 
 .button:hover {

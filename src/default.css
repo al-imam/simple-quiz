@@ -142,7 +142,6 @@ button,
 [type="button"],
 [type="reset"],
 [type="submit"] {
-  -webkit-appearance: button;
   background-color: transparent;
   background-image: none;
 }
@@ -165,7 +164,6 @@ progress {
 }
 
 [type="search"] {
-  -webkit-appearance: textfield;
   outline-offset: -2px;
 }
 
@@ -250,7 +248,6 @@ iframe,
 embed,
 object {
   display: block;
-  vertical-align: middle;
 }
 
 img,
@@ -263,7 +260,13 @@ video {
   display: none;
 }
 
-:where(button, button[type], input[type="button"], input[type="submit"], input[type="reset"]),
+:where(
+    button,
+    button[type],
+    input[type="button"],
+    input[type="submit"],
+    input[type="reset"]
+  ),
 :where(input[type="file"])::-webkit-file-upload-button,
 :where(input[type="file"])::file-selector-button {
   -webkit-tap-highlight-color: transparent;
@@ -272,6 +275,12 @@ video {
   text-align: center;
 }
 
-:where(button, button[type], input[type="button"], input[type="submit"], input[type="reset"])[disabled] {
+:where(
+    button,
+    button[type],
+    input[type="button"],
+    input[type="submit"],
+    input[type="reset"]
+  )[disabled] {
   cursor: not-allowed;
 }
