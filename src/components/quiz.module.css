@@ -10,15 +10,7 @@
     22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
     41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
     100px 100px 80px rgba(0, 0, 0, 0.07);
-
-  --red-dark: hsl(1, 94.6%, 56.5%);
-  --red-light: hsl(10, 100%, 65%);
-  --green-dark: hsl(141.9, 69.2%, 58%);
-  --green-light: hsl(160, 80%, 70%);
-  --p-dark: hsl(168.8, 70.2%, 67.1%);
-  --p-light: hsl(145, 80%, 80%);
-  --dark: var(--p-dark);
-  --light: var(--p-light);
+  transition: transform 500ms ease-in;
 }
 
 .question {
@@ -61,6 +53,59 @@
 
 .button:active {
   outline: 2px solid #e0e2e7;
+}
+
+.arrow {
+  --height: 80px;
+  background-image: linear-gradient(to top right, var(--dark), var(--light));
+  margin-top: 64px;
+  display: block;
+  margin-inline: auto;
+  height: var(--height);
+  width: var(--height);
+  border-radius: 100px;
+  border: none;
+  outline: none;
+  padding: 1rem;
+  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    100px 100px 80px rgba(0, 0, 0, 0.07);
+  transition: transform 200ms ease-in;
+}
+
+.arrow:hover {
+  transform: translateX(8px);
+}
+
+.arrow:active {
+  outline: 2px solid #e0e2e7;
+}
+
+.animate {
+  animation: outAndIn 800ms ease-in 0s 1 normal none;
+}
+
+@keyframes outAndIn {
+  0% {
+    opacity: 1;
+  }
+
+  49% {
+    opacity: 0;
+    transform: translateX(100vw);
+  }
+
+  50% {
+    transform: translateX(-100vw);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @media (min-width: 40rem) {
