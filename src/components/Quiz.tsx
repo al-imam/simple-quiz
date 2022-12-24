@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import arrow from "./arrow.svg";
+import arrowIcon from "./arrow.svg";
 import questionIcon from "./question.svg";
 import classes from "./quiz.module.css";
 
@@ -13,7 +13,7 @@ const firstQuestion: QuestionType = {
   ans: false,
 };
 
-function setVariable(color: string): void {
+function setCSSVariable(color: string): void {
   document.documentElement.style.setProperty("--dark", `var(--${color}-dark)`);
   document.documentElement.style.setProperty(
     "--light",
@@ -29,12 +29,12 @@ function decode(str: string): string {
 }
 
 function fetchQuiz(
-  fn: React.Dispatch<React.SetStateAction<QuestionType>>
+  callBack: React.Dispatch<React.SetStateAction<QuestionType>>
 ): void {
   fetch("https://opentdb.com/api.php?amount=1&category=18&type=boolean")
     .then((res) => res.json())
     .then((data) => {
-      fn({
+      callBack({
         question: data.results[0].question,
         ans: data.results[0].correct_answer === "False" ? false : true,
       });
@@ -44,7 +44,7 @@ function fetchQuiz(
 const Quiz: React.FunctionComponent = () => {
   const [question, setQuestion] = useState<QuestionType>(firstQuestion);
   const [animation, setAnimation] = useState(false);
-  const [ans, setAns] = useState<null | "true" | "false">(null);
+  const [answer, setAnswer] = useState<null | "true" | "false">(null);
 
   useEffect(() => {
     fetchQuiz(setQuestion);
@@ -52,20 +52,18 @@ const Quiz: React.FunctionComponent = () => {
 
   const handler = () => {
     setAnimation(true);
-    setVariable("p");
-    setAns(null);
+    setCSSVariable("p");
+    setAnswer(null);
     fetchQuiz(setQuestion);
   };
 
   const handleSubmit = (ans: boolean): void => {
-    console.log(question, ans);
-    console.log(question.ans, ans);
     if (question.ans === ans) {
-      setAns("true");
-      setVariable("green");
+      setAnswer("true");
+      setCSSVariable("green");
     } else {
-      setAns("false");
-      setVariable("red");
+      setAnswer("false");
+      setCSSVariable("red");
     }
   };
 
@@ -79,8 +77,8 @@ const Quiz: React.FunctionComponent = () => {
       r.class += " " + classes.animate;
     }
 
-    if (ans != null) {
-      if (ans === "true") {
+    if (answer != null) {
+      if (answer === "true") {
         r.text = "correct answer ✅";
       } else {
         r.text = "wrong answer ❌";
@@ -116,7 +114,7 @@ const Quiz: React.FunctionComponent = () => {
         <span className={classes.note}>{computed.text}</span>
       </div>
       <button className={classes.arrow} onClick={handler}>
-        <img src={arrow} alt="?" />
+        <img src={arrowIcon} alt="?" />
       </button>
     </>
   );
