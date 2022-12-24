@@ -36,7 +36,7 @@ function fetchQuiz(
     .then((data) => {
       fn({
         question: data.results[0].question,
-        ans: Boolean(data.results[0].correct_answer),
+        ans: data.results[0].correct_answer === "False" ? false : true,
       });
     });
 }
@@ -58,17 +58,15 @@ const Quiz: React.FunctionComponent = () => {
   };
 
   const handleSubmit = (ans: boolean): void => {
+    console.log(question, ans);
+    console.log(question.ans, ans);
     if (question.ans === ans) {
       setAns("true");
       setVariable("green");
-      return;
-    } else if (question.ans != null) {
+    } else {
       setAns("false");
       setVariable("red");
-      return;
     }
-    setVariable("p");
-    setAns(null);
   };
 
   const quizComputations = (): { class: string; text: string } => {
